@@ -1,3 +1,4 @@
+import AppRouter from "./routes/AppRouter"
 
 
 function App() {
@@ -5,9 +6,8 @@ function App() {
   return (
     <>
       <div>
-    <h1 className="bg-lime-300">hello</h1>
+         <AppRouter />
       </div>
-     
     </>
   )
 }
