@@ -5,7 +5,7 @@ import { MdOutlineContactMail } from "react-icons/md";
 
 const NavBar = () => {
   return (
-    <nav className="flex justify-evenly bg-navBar2 text-textColor py-4 font-semibol text-lg">
+    <nav className="flex justify-evenly bg-navBar2 text-textColor py-4 font-semibol text-lg sticky top-0 z-10">
 
       <div className="flex items-center">
       <MdOutlineContactMail className="w-6 h-6" />

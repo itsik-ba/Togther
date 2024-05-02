@@ -5,7 +5,7 @@ function App() {
   
   return (
     <>
-      <div className="bg-lightBlue h-screen">
+      <div className="bg-lightBlue">
          <AppRouter />
       </div>
     </>
