@@ -1,12 +1,13 @@
 import express from 'express';
-import cors from 'cors';
 import "./Data/data";
+import userRoutes from "./API/Routes/userRoutes";
 
 const app = express();
-
+const Port = process.env.PORT 
 app.use(express.json());
-app.use(cors());
 
+app.use("/api", userRoutes);
 
-
-app.listen(port, )
+app.listen(Port, () => {
+    console.log(`app listening on port ${Port}`)
+  })
