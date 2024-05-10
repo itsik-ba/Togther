@@ -4,6 +4,7 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 const userSecretKey:string                                                            = process.env.JWT_SECRET || 'default_secret_key';
 
+
 export const registerUser = async (req:any, res:any) =>{
     try {
         const {username, email, password} = req.body;  

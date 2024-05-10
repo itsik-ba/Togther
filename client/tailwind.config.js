@@ -15,6 +15,7 @@ export default {
     navBar:"#1F2833",
     navBar2:"#124E66",
     textColor:"#FEFFFF",
+    erorrs:"#d30000",
     },
   },
   plugins: [],
