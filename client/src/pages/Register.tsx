@@ -63,7 +63,7 @@ const Register = () => {
         setData(responseData);
         console.log(responseData);
 
-        i
+      
 
         } else {
         console.log("user registration successful");
@@ -71,9 +71,8 @@ const Register = () => {
         navigate("/login");
 
              } 
-    }
-
-      } catch (error) {
+    
+    } catch (error) {
       console.error(error);
     }
   }
