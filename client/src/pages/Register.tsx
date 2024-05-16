@@ -134,7 +134,7 @@ const Register = () => {
              </div>
             </form>
 
-            <div className="flex justify-center text-textColor mt-[-22px]">
+            <div className="flex justify-center text-textColor mt-[-10px]">
             <Link to="/login">Move To Login</Link>
             </div>
             
