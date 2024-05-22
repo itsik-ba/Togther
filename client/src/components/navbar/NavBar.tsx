@@ -43,15 +43,16 @@ return (
 
 ) : (
     
-          <><div className="flex items-center">
+          <>
+          {/* <div className="flex items-center">
             <IoIosCreate className="w-6 h-6" />
             <NavLink to="/contact" className="ml-2">Create Project</NavLink>
-          </div>
+          </div> */}
           
-          <div className="flex items-center">
+          {/* <div className="flex items-center">
               <FaWallet className="w-6 h-6" />
               <NavLink to="/all-projects" className="ml-2">All Projects</NavLink>
-            </div>
+            </div> */}
             
             <div className="flex items-center">
               <SlLogout className="w-6 h-6" />

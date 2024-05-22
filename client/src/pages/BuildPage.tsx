@@ -1,10 +1,8 @@
-import { Dispatch, SetStateAction, useEffect } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import CreateProject from "../components/CreateProject";
+import CreateTeam from "../components/CreateTeam";
 
-
-// interface NavBarProps {
-//   isLoggedIn: boolean;
-// }
 
 
 interface BuildPageProps {
@@ -15,30 +13,59 @@ interface BuildPageProps {
 const BuildPage: React.FC<BuildPageProps> = ({ setIsLoggedIn }) => {
 
   const navigate = useNavigate();
+  const currentDate = new Date();
+  const [username, setUsername] = useState<string | null>(null);
+   
   
   useEffect(() => {
     const token = localStorage.getItem("token");
-    // Check if the token exists
+
     if (token) {
-      // If the token exists, set isLoggedIn to true
       setIsLoggedIn(true);
+
+      const decodedToken = decodeToken(token)!;
+      setUsername(decodedToken.email);
+
     } else {
-      // If the token doesn't exist, navigate to the login page
       navigate("/login");
+
     }
   }, [setIsLoggedIn, navigate]);
 
 
+  const decodeToken = (token: string): { [key: string]: any } | null => {
+    try {
+      const base64Url = token.split('.')[1];
+      const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+      const jsonPayload = decodeURIComponent(atob(base64).split('').map((c) => {
+        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+      }).join(''));
+      return JSON.parse(jsonPayload);
+    } catch (error) {
+      console.error("Invalid token", error);
+      return null;
+    }
+  };
+
+
   return (
     <>
-     
-      <h1>buildPage</h1>
-      <div className="py-32 h-screen flex justify-center">
-        <h2>asfasfdas</h2>
-        <h2>asfasfdas</h2>
+       <div>
+           <h2>Hello <span>{username}</span></h2>
+           <p>{currentDate.toLocaleString()}</p>
+        </div>
        
-      </div>
+          <div className="py-32 h-screen flex justify-center">
+           {/* <div>
+            <CreateProject />
+           </div> */}
+           <div>
+            <CreateTeam />
+           </div>
+          </div>
+          
     </>
+  
   );
 }
 
