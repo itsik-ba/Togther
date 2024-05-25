@@ -1,8 +1,16 @@
 
 
+
 const CreateTeam = () => {
   return (
-    <div>CreateTeam</div>
+    <>
+    <main>
+     <header>
+      
+     </header>
+    </main>
+    </>
+   
   )
 }
 
