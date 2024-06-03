@@ -2,6 +2,7 @@ import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import CreateProject from "../components/CreateProject";
 import CreateTeam from "../components/CreateTeam";
+import { io } from "socket.io-client";
 
 
 
@@ -22,7 +23,7 @@ const BuildPage: React.FC<BuildPageProps> = ({ setIsLoggedIn }) => {
 
     if (token) {
       setIsLoggedIn(true);
-
+      
       const decodedToken = decodeToken(token)!;
       setUsername(decodedToken.email);
 
@@ -30,6 +31,22 @@ const BuildPage: React.FC<BuildPageProps> = ({ setIsLoggedIn }) => {
       navigate("/login");
 
     }
+    
+    const socket = io('http://localhost:3000');
+
+    socket.on('connect', () => {
+      console.log('Connected to server with id:', socket.id);
+    });
+
+    socket.on('disconnect', () => {
+      console.log('Disconnected from server');
+    });
+
+    // Clean up the connection when the component is unmounted
+    return () => {
+      socket.disconnect();
+    };
+    
   }, [setIsLoggedIn, navigate]);
 
 
@@ -55,14 +72,20 @@ const BuildPage: React.FC<BuildPageProps> = ({ setIsLoggedIn }) => {
            <p>{currentDate.toLocaleString()}</p>
         </div>
        
-          <div className="py-32 h-screen flex justify-center">
-           {/* <div>
-            <CreateProject />
-           </div> */}
+          <section className="w-screen
+          xs:py-28 xs:h-screen xs:justify-center 
+          lg:py-48 lg:flex 
+          ">
+         
            <div>
             <CreateTeam />
            </div>
-          </div>
+
+           <div className="">
+            <CreateProject />
+           </div>
+
+          </section>
           
     </>
   
