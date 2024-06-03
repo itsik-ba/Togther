@@ -29,7 +29,7 @@ const CreateTeam = () => {
       </div>
  </div>
 
-      <div className="w-screen flex justify-center py-4">
+      <div className="sm:py-5">
         <input 
         type="text"
         placeholder="mission"

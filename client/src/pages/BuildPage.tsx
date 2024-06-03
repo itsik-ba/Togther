@@ -50,17 +50,21 @@ const BuildPage: React.FC<BuildPageProps> = ({ setIsLoggedIn }) => {
 
   return (
     <>
-       <div>
+       <div className="xs:py-4 flex justify-around">
            <h2>Hello <span>{username}</span></h2>
            <p>{currentDate.toLocaleString()}</p>
         </div>
        
-          <div className="py-32 h-screen flex justify-center">
-           {/* <div>
-            <CreateProject />
-           </div> */}
+          <div className="w-screen h-screen py-24 text-center
+           sm:p-32 sm:justify-center flex-wrap "
+            >
+         
            <div>
             <CreateTeam />
+           </div>
+
+           <div>
+            <CreateProject />
            </div>
           </div>
           
