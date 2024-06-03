@@ -1,7 +1,16 @@
 
 
-const CreateProject = () => {
-  
+interface CreateProjectProps {
+  memberInfo: {
+    member: string;
+    role: string;
+    mission: string;
+  };
+}
+
+
+const CreateProject: React.FC<CreateProjectProps> = ({ memberInfo }) => {
+  console.log(memberInfo)
 
   return (
     <>
@@ -22,9 +31,9 @@ const CreateProject = () => {
       </thead>
       <tbody className="">
         <tr>
-        <td className="border border-gray-300 px-4 py-2">ozi</td>
-        <td className="border border-gray-300 px-4 py-2">ozi</td>
-        <td className="border border-gray-300 px-4 py-2">ozi</td>
+        <td className="border border-gray-300 px-4 py-2">{memberInfo.member}</td>
+        <td className="border border-gray-300 px-4 py-2">{memberInfo.role}</td>
+        <td className="border border-gray-300 px-4 py-2">{memberInfo.mission}</td>
         </tr>
       </tbody>
      

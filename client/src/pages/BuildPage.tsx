@@ -16,7 +16,7 @@ const BuildPage: React.FC<BuildPageProps> = ({ setIsLoggedIn }) => {
   const navigate = useNavigate();
   const currentDate = new Date();
   const [username, setUsername] = useState<string | null>(null);
-   
+  const [memberInfo, setMemberInfo] = useState({ member: '', role: '', mission: '' });
   
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -67,7 +67,7 @@ const BuildPage: React.FC<BuildPageProps> = ({ setIsLoggedIn }) => {
 
   return (
     <>
-       <div>
+       <div className="xs:py-3 xs:flex xs:justify-around text-erorrs font-semibold">
            <h2>Hello <span>{username}</span></h2>
            <p>{currentDate.toLocaleString()}</p>
         </div>
@@ -78,11 +78,11 @@ const BuildPage: React.FC<BuildPageProps> = ({ setIsLoggedIn }) => {
           ">
          
            <div>
-            <CreateTeam />
+            <CreateTeam memberInfo={memberInfo} setMemberInfo={setMemberInfo} />
            </div>
 
            <div className="">
-            <CreateProject />
+            <CreateProject memberInfo={memberInfo} />
            </div>
 
           </section>

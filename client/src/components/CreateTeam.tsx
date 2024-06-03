@@ -1,13 +1,27 @@
-import { useState } from "react"
 import "../index.css"
 
+interface CreateTeamProps {
+  memberInfo: {
+    member: string;
+    role: string;
+    mission: string;
+  };
+  setMemberInfo: React.Dispatch<React.SetStateAction<{
+    member: string;
+    role: string;
+    mission: string;
+  }>>;
+}
+
+
+const CreateTeam: React.FC<CreateTeamProps> = ({ memberInfo, setMemberInfo }) => {
 
 
 
+ const handleSubmitMember = () => {
+  console.log(memberInfo)
+ }
 
-const CreateTeam = () => {
-
-const [userInfo, setUserInfo] = useState({member:'' , role:'', mission:''})
 
 
 
@@ -27,7 +41,8 @@ const [userInfo, setUserInfo] = useState({member:'' , role:'', mission:''})
         <input 
         type="text"
         name="member"
-        value={userInfo.member}
+        value={memberInfo.member}
+        onChange={(e) => setMemberInfo({ ...memberInfo, member: e.target.value })}
         placeholder="member name"
         className="bg-dragMe w-44 text-mainPink outline-0 font-semibold text-lg text-center p-1 placeholder-custom" />
       </div>
@@ -36,7 +51,8 @@ const [userInfo, setUserInfo] = useState({member:'' , role:'', mission:''})
         <input 
         type="text" 
         name="role"
-        value={userInfo.role}
+        value={memberInfo.role}
+        onChange={(e) => setMemberInfo({ ...memberInfo, role: e.target.value })}
         placeholder="role" 
         className="bg-dragMe w-44 text-textColor font-semibold text-lg outline-0 text-center placeholder-custom p-1" />
       </div>
@@ -46,7 +62,8 @@ const [userInfo, setUserInfo] = useState({member:'' , role:'', mission:''})
         <input 
         type="text"
         name="mission"
-        value={userInfo.mission}
+        value={memberInfo.mission}
+        onChange={(e) => setMemberInfo({ ...memberInfo, mission: e.target.value })}
         placeholder="mission"
         className="bg-dragMe w-44 text-textColor outline-0 
         text-center font-semibold text-lg placeholder-custom p-1"/>
@@ -54,7 +71,10 @@ const [userInfo, setUserInfo] = useState({member:'' , role:'', mission:''})
       </div>
 
       <div className="text-center py-2">
-      <button className="bg-mainPink py-1 px-2 text-textColor">add</button>
+      <button 
+      type="submit"
+      onClick={handleSubmitMember}
+      className="bg-mainPink py-1 px-2 text-textColor">add</button>
       </div>
     
 
