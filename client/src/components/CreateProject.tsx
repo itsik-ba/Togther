@@ -1,3 +1,4 @@
+import { useState } from "react";
 
 
 interface CreateProjectProps {
@@ -10,7 +11,25 @@ interface CreateProjectProps {
 
 
 const CreateProject: React.FC<CreateProjectProps> = ({ memberInfo }) => {
-  console.log(memberInfo)
+  
+  const [droppedInfo, setDroppedInfo] = useState<{ field: string, value: string } | null>(null);
+
+
+
+
+  const handleDrop = (e: React.DragEvent<HTMLTableSectionElement>) => {
+    e.preventDefault();
+    const data = JSON.parse(e.dataTransfer.getData('text/plain'));
+    console.log('Dropped data:', data);
+    setDroppedInfo(data);
+  };
+
+
+  const handleDragOver = (e: React.DragEvent<HTMLTableSectionElement>) => {
+    e.preventDefault();
+  };
+
+
 
   return (
     <>
@@ -29,19 +48,25 @@ const CreateProject: React.FC<CreateProjectProps> = ({ memberInfo }) => {
         <th className="border border-gray-300 px-10 py-2">Mission</th>
         </tr>
       </thead>
-      <tbody className="">
-        <tr>
-        <td className="border border-gray-300 px-4 py-2">{memberInfo.member}</td>
-        <td className="border border-gray-300 px-4 py-2">{memberInfo.role}</td>
-        <td className="border border-gray-300 px-4 py-2">{memberInfo.mission}</td>
-        </tr>
-      </tbody>
-     
-    </table>
-   </section>
 
-   </>
+      <tbody 
+      className="" 
+      onDrop={handleDrop}
+      onDragOver={handleDragOver}
+      >
+
+        <tr>
+        <td className="border border-gray-300 px-4 py-3">{memberInfo.member}</td>
+        <td className="border border-gray-300 px-4 py-3">{memberInfo.role}</td>
+        <td className="border border-gray-300 px-4 py-3">{memberInfo.mission}</td>
+        </tr>
+
+        
+      </tbody>
+     </table>
+   </section>
+ </>
   );
-}
+};
 
 export default CreateProject;
