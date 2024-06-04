@@ -1,16 +1,19 @@
 
 
-interface CreateProjectProps {
-  memberInfo: {
+
+interface MemberInfo {
     member: string;
     role: string;
     mission: string;
-  };
+  }
+
+interface CreateProjectProps {
+  memberInfo: MemberInfo[];
 }
 
 
 const CreateProject: React.FC<CreateProjectProps> = ({ memberInfo }) => {
-  console.log(memberInfo)
+
 
   return (
     <>
@@ -30,11 +33,16 @@ const CreateProject: React.FC<CreateProjectProps> = ({ memberInfo }) => {
         </tr>
       </thead>
       <tbody className="">
-        <tr>
-        <td className="border border-gray-300 px-4 py-2">{memberInfo.member}</td>
-        <td className="border border-gray-300 px-4 py-2">{memberInfo.role}</td>
-        <td className="border border-gray-300 px-4 py-2">{memberInfo.mission}</td>
-        </tr>
+        
+      {memberInfo.map((member, index) => (
+              <tr key={index}>
+                <td className="border border-gray-300 px-4 py-2">{member.member}</td>
+                <td className="border border-gray-300 px-4 py-2">{member.role}</td>
+                <td className="border border-gray-300 px-4 py-2">{member.mission}</td>
+              </tr>
+            ))}
+        
+       
       </tbody>
      
     </table>

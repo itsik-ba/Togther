@@ -2,23 +2,21 @@ import { useState } from "react";
 import "../index.css"
 
 
-interface CreateTeamProps {
-  memberInfo: {
+
+interface MemberInfo  {
     member: string;
     role: string;
     mission: string;
-  };
-  setMemberInfo: React.Dispatch<React.SetStateAction<{
-    member: string;
-    role: string;
-    mission: string;
-  }>>;
-}
+  }
+
+  interface CreateTeamProps {
+     setMemberInfo: React.Dispatch<React.SetStateAction<MemberInfo[]>>;
+    }
 
 
 const CreateTeam: React.FC<CreateTeamProps> = ({ setMemberInfo }) => {
     
-  const [localInfo, setLocalInfo] = useState({ member: '', role: '', mission: '' });
+  const [localInfo, setLocalInfo] = useState<MemberInfo>({ member: '', role: '', mission: '' });
   const [errors, setErrors] = useState('');
 
  const handleSubmitMember = () => {
@@ -27,8 +25,8 @@ const CreateTeam: React.FC<CreateTeamProps> = ({ setMemberInfo }) => {
   if(!localInfo.role || !localInfo.member || !localInfo.mission){
     throw new Error("Please fill out all fields");
   } else{
-    setMemberInfo(localInfo);
-    setLocalInfo({ member: '', role: '', mission: '' }); 
+    setMemberInfo(prev => [...prev, localInfo]);
+    setLocalInfo({ member: '', role: '', mission: '' });
     setErrors(""); 
   } 
   } catch (error:any) {
@@ -39,11 +37,11 @@ const CreateTeam: React.FC<CreateTeamProps> = ({ setMemberInfo }) => {
  }
 
 
-console.log(errors)
+
 
   return (
     <>
-    <main>
+    <main className="sticky">
     <div className="text-center py-2">
       <h1>create your team</h1> 
    </div> 
