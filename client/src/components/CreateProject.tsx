@@ -1,12 +1,15 @@
 import { useState } from "react";
 
 
-interface CreateProjectProps {
-  memberInfo: {
+
+interface MemberInfo {
     member: string;
     role: string;
     mission: string;
-  };
+  }
+
+interface CreateProjectProps {
+  memberInfo: MemberInfo[];
 }
 
 
@@ -48,6 +51,21 @@ const CreateProject: React.FC<CreateProjectProps> = ({ memberInfo }) => {
         <th className="border border-gray-300 px-10 py-2">Mission</th>
         </tr>
       </thead>
+      <tbody className="">
+        
+      {memberInfo.map((member, index) => (
+              <tr key={index}>
+                <td className="border border-gray-300 px-4 py-2">{member.member}</td>
+                <td className="border border-gray-300 px-4 py-2">{member.role}</td>
+                <td className="border border-gray-300 px-4 py-2">{member.mission}</td>
+              </tr>
+            ))}
+        
+       
+      </tbody>
+     
+    </table>
+   </section>
 
       <tbody 
       className="" 
@@ -63,8 +81,7 @@ const CreateProject: React.FC<CreateProjectProps> = ({ memberInfo }) => {
 
         
       </tbody>
-     </table>
-   </section>
+    
  </>
   );
 };

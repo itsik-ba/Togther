@@ -11,12 +11,18 @@ interface BuildPageProps {
 }
 
 
+interface MemberInfo  {
+  member: string;
+  role: string;
+  mission: string;
+}
+
 const BuildPage: React.FC<BuildPageProps> = ({ setIsLoggedIn }) => {
 
   const navigate = useNavigate();
   const currentDate = new Date();
   const [username, setUsername] = useState<string | null>(null);
-  const [memberInfo, setMemberInfo] = useState({ member: '', role: '', mission: '' });
+  const [memberInfo, setMemberInfo] = useState<MemberInfo[]>([]);
   
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -42,7 +48,7 @@ const BuildPage: React.FC<BuildPageProps> = ({ setIsLoggedIn }) => {
       console.log('Disconnected from server');
     });
 
-    // Clean up the connection when the component is unmounted
+    
     return () => {
       socket.disconnect();
     };
@@ -67,7 +73,7 @@ const BuildPage: React.FC<BuildPageProps> = ({ setIsLoggedIn }) => {
 
   return (
     <>
-       <div className="xs:py-3 xs:flex xs:justify-around text-erorrs font-semibold">
+       <div className="sticky top-14 z-10 xs:py-3 xs:flex xs:justify-around text-erorrs font-semibold">
            <h2>Hello <span>{username}</span></h2>
            <p>{currentDate.toLocaleString()}</p>
         </div>
@@ -78,7 +84,7 @@ const BuildPage: React.FC<BuildPageProps> = ({ setIsLoggedIn }) => {
           ">
          
            <div>
-            <CreateTeam memberInfo={memberInfo} setMemberInfo={setMemberInfo} />
+           <CreateTeam setMemberInfo={setMemberInfo} />
            </div>
 
            <div className="">
