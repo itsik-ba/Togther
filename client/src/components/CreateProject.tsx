@@ -51,37 +51,26 @@ const CreateProject: React.FC<CreateProjectProps> = ({ memberInfo }) => {
         <th className="border border-gray-300 px-10 py-2">Mission</th>
         </tr>
       </thead>
-      <tbody className="">
-        
+    
       {memberInfo.map((member, index) => (
+          <tbody 
+          className=""
+          onDrop={handleDrop}
+          onDragOver={handleDragOver}
+          >
               <tr key={index}>
                 <td className="border border-gray-300 px-4 py-2">{member.member}</td>
                 <td className="border border-gray-300 px-4 py-2">{member.role}</td>
                 <td className="border border-gray-300 px-4 py-2">{member.mission}</td>
               </tr>
+              </tbody>
             ))}
-        
-       
-      </tbody>
+    
      
     </table>
    </section>
 
-      <tbody 
-      className="" 
-      onDrop={handleDrop}
-      onDragOver={handleDragOver}
-      >
-
-        <tr>
-        <td className="border border-gray-300 px-4 py-3">{memberInfo.member}</td>
-        <td className="border border-gray-300 px-4 py-3">{memberInfo.role}</td>
-        <td className="border border-gray-300 px-4 py-3">{memberInfo.mission}</td>
-        </tr>
-
-        
-      </tbody>
-    
+      
  </>
   );
 };
