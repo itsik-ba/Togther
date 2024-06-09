@@ -44,20 +44,20 @@ return (
 ) : (
     
           <>
-          {/* <div className="flex items-center">
-            <IoIosCreate className="w-6 h-6" />
-            <NavLink to="/contact" className="ml-2">Create Project</NavLink>
-          </div> */}
+          <div className="flex items-center">
+          <FaWallet className="w-6 h-6" />
+           <NavLink to="/enterRoom" className="ml-1">Enter Room</NavLink>
+          </div>
           
-          {/* <div className="flex items-center">
-              <FaWallet className="w-6 h-6" />
-              <NavLink to="/all-projects" className="ml-2">All Projects</NavLink>
-            </div> */}
+          <div className="flex items-center">
+            <IoIosCreate className="w-6 h-6" />
+              <NavLink to="/createRoom" className="ml-1">Create Room</NavLink>
+            </div>
             
             <div className="flex items-center">
               <SlLogout className="w-6 h-6" />
               <button
-                className="ml-2"
+                className="ml-1"
                 onClick={handleLogOut}
               >LogOut</button>
             </div></>

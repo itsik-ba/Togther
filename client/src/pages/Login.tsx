@@ -39,7 +39,7 @@ const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
 
   localStorage.setItem('token', response.data.token);
     setIsLoggedIn(true);
-    navigate("/buildPage");
+    navigate("/createRoom");
    
 
  } catch (error) {

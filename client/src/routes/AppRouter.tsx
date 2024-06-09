@@ -7,6 +7,8 @@ import Contact from "../pages/Contact";
 import Login from "../pages/Login";
 import ForgotPassword from "../pages/ForgotPassword";
 import BuildPage from "../pages/BuildPage";
+import EnterRoom from "../pages/EnterRoom";
+import CreateRoom from "../pages/CreateRoom";
 
 
 
@@ -23,6 +25,8 @@ function AppRouter() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/login" element={<Login setIsLoggedIn={setIsLoggedIn} />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="/enterRoom" element={<EnterRoom />} />
+        <Route path="/createRoom" element={<CreateRoom setIsLoggedIn={setIsLoggedIn} />                                                                                                                       } />
         <Route path="/buildPage" element={<BuildPage setIsLoggedIn={setIsLoggedIn} />} />
       </Routes>
     </div>
