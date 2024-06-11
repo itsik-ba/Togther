@@ -1,6 +1,16 @@
 import mongoose, { Schema } from "mongoose";
 
 
+
+const RoomSchema = new Schema({
+  roomName: {
+      type: String,
+      required: true
+  },
+ 
+});
+
+
 export const UserSchema = new Schema({
     username: {
         type: String,
@@ -19,7 +29,8 @@ export const UserSchema = new Schema({
       createdAt: {
         type: Date,
         default: Date.now
-      }
+      },
+     roomDetails: RoomSchema
 });
 
 const UserModel = mongoose.model('User', UserSchema);

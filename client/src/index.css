@@ -2,7 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-
+html{
+  background-color:#C2CAD0 ;
+}
 .placeholder-custom::placeholder {
     color: #ffffff; 
   }
