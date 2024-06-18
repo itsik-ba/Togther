@@ -13,10 +13,14 @@ interface JwtPayload {
 export const createRoom = async (req:any, res:any) =>{
 try {
  
-  const {roomName, adminPassword} = req.body;
+  const {roomName, adminPassword, roomPassword} = req.body;
  
   if(!roomName){
     return res.status(401).json({message:'Invalid room name'})
+  }
+
+  if(!roomPassword){
+    return res.status(401).json({message:'Invalid room password'})
   }
   
   if(!adminPassword){
@@ -50,7 +54,7 @@ try {
     return res.status(400).json({ message: 'Room name already taken' });
   }
 
-  user.roomDetails = { roomName };
+  user.roomDetails = { roomName, roomPassword };
   await user.save();
 
 

@@ -18,7 +18,9 @@ const NavBar: React.FC<NavBarProps> = ({ isLoggedIn, setIsLoggedIn }) => {
   const navigate = useNavigate(); 
 
   const handleLogOut = () => {
+    localStorage.removeItem("token");
     setIsLoggedIn(false); 
+  
       navigate("/login");
   }
 

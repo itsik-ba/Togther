@@ -1,5 +1,6 @@
 import { Dispatch, SetStateAction, useEffect, useState} from "react";
 import { useNavigate } from "react-router-dom";
+import { PiPasswordLight } from "react-icons/pi";
 import { VscSymbolNamespace } from "react-icons/vsc";
 import { MdAdminPanelSettings } from "react-icons/md";
 import axios from "axios";
@@ -15,6 +16,7 @@ const CreateRoom: React.FC<BuildPageProps> = ({ setIsLoggedIn }) => {
 
     const [roomName, setRoomName] = useState("");
     const [adminPassword, setAdminPassword] = useState("");
+    const [roomPassword, setRoomPassword] = useState("");
     const [message, setMessage] = useState<string | null>(null);
 
  useEffect(() =>{
@@ -41,7 +43,7 @@ const handleCreateRoom = async (event: React.FormEvent<HTMLFormElement>) => {
 
   const response = await axios.post(
     'http://localhost:3000/api/createRoom',
-    { roomName, adminPassword },
+    { roomName, adminPassword, roomPassword },
     {
       headers: {
         Authorization: `Bearer ${token}`
@@ -79,11 +81,12 @@ const handleCreateRoom = async (event: React.FormEvent<HTMLFormElement>) => {
       <div className="py-6 text-erorrs font-bold">
         <h2 className="text-lg">You will need Admin password!!!</h2>
         <h2 className="text-lg">Don't forget your room name!!!</h2>
+        <h2 className="text-lg">Don't forget your room password!!!</h2>
       </div>
     
       <form onSubmit={handleCreateRoom}>
       <section className="py-8 flex justify-center">
-        <div className="bg-dragMe w-64 h-64 py-4">
+        <div className="bg-dragMe w-64 h-72 py-3">
           
           <div className="py-4 flex justify-center items-center mr-4">
             <VscSymbolNamespace className="w-6 h-6 mr-1" />
@@ -96,8 +99,20 @@ const handleCreateRoom = async (event: React.FormEvent<HTMLFormElement>) => {
               className="text-center text-erorrs bg-navBar py-2 outline-none placeholder-custom"
             />
           </div>
+          
+          <div className="py-4 flex justify-center items-center mr-4">
+          <PiPasswordLight className="w-6 h-6 mr-1" />
+            <input 
+              type="text"
+              onChange={(e) => setRoomPassword(e.target.value)}
+              placeholder="Room Password"
+              value={roomPassword}
+              required
+              className="text-center text-erorrs bg-navBar py-2 outline-none placeholder-custom"
+            />
+          </div>
 
-          <div className="py-6 flex justify-center items-center mr-4">
+          <div className="py-4 flex justify-center items-center mr-4">
             <MdAdminPanelSettings className="w-6 h-6 mr-1" />
             <input 
               type="password"
@@ -109,7 +124,7 @@ const handleCreateRoom = async (event: React.FormEvent<HTMLFormElement>) => {
             />
           </div>
 
-          <div className="py-4">
+          <div className="py-3">
             <button
               type="submit"
               className="py-2 bg-mainPink text-textColor px-2"

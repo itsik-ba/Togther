@@ -80,7 +80,7 @@ const Register = () => {
 
 
   return (
-    <div className="py-32 h-screen flex justify-center">
+    <div className="py-32 flex justify-center">
       <div className="bg-navBar w-80 h-96 rounded-xl">
         <div className="flex justify-center bg-navBar2 rounded-xl rounded-b-none">
         <h2 className="text-textColor py-2 text-xl">register</h2>

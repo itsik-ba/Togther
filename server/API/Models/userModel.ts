@@ -7,6 +7,10 @@ const RoomSchema = new Schema({
       type: String,
       required: true
   },
+  roomPassword: {
+      type: String,
+      required: true
+  },
   
  
 });

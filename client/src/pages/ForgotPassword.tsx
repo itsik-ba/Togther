@@ -21,7 +21,7 @@ const handleSubmit = async (event:any)=>{
 }
 
 return (
-    <div className="py-32 h-screen flex justify-center">
+    <div className="py-32 flex justify-center">
     <div className="bg-navBar2 w-80 h-96 rounded-xl">
       <div className="flex justify-center bg-mainPink rounded-xl rounded-b-none">
 
