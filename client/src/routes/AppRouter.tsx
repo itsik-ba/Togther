@@ -25,7 +25,7 @@ function AppRouter() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/login" element={<Login setIsLoggedIn={setIsLoggedIn} />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
-        <Route path="/enterRoom" element={<EnterRoom />} />
+        <Route path="/enterRoom" element={<EnterRoom setIsLoggedIn={setIsLoggedIn} />} />
         <Route path="/createRoom" element={<CreateRoom setIsLoggedIn={setIsLoggedIn} />                                                                                                                       } />
         <Route path="/buildPage" element={<BuildPage setIsLoggedIn={setIsLoggedIn} />} />
       </Routes>
