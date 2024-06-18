@@ -7,6 +7,7 @@ const RoomSchema = new Schema({
       type: String,
       required: true
   },
+  
  
 });
 

@@ -15,7 +15,7 @@ const CreateRoom: React.FC<BuildPageProps> = ({ setIsLoggedIn }) => {
 
     const [roomName, setRoomName] = useState("");
     const [adminPassword, setAdminPassword] = useState("");
-
+    const [message, setMessage] = useState<string | null>(null);
 
  useEffect(() =>{
     const token = localStorage.getItem("token");
@@ -30,22 +30,47 @@ const CreateRoom: React.FC<BuildPageProps> = ({ setIsLoggedIn }) => {
 
 const handleCreateRoom = async (event: React.FormEvent<HTMLFormElement>) => {
   event.preventDefault()
+
  try {
   
- const response = await axios.post('http://localhost:3000/api/createRoom', {roomName,adminPassword } )
- console.log(response.data)
+  const token = localStorage.getItem("token");
+  if (!token) {
+    setMessage("No token found");
+    return;
+  }
 
- } catch (error) {
+  const response = await axios.post(
+    'http://localhost:3000/api/createRoom',
+    { roomName, adminPassword },
+    {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    }
+  );
+
+  setMessage(response.data.message);
+   
+  if(response.status === 200) {
+    setTimeout(() => {
+      navigate("/enterRoom");
+    }, 1000);
+   }
+
+ 
+  } catch (error) {
+    if (axios.isAxiosError(error) && error.response) {
+      setMessage(error.response.data.message);
+    } else {
+      setMessage("An error occurred");
+    }
   console.error(error)
  }
 
-}
+};
  
  
- 
- 
- 
-return (
+ return (
   <>
     <main className="py-8 xs:text-center">
       <div className="">
@@ -55,6 +80,7 @@ return (
         <h2 className="text-lg">You will need Admin password!!!</h2>
         <h2 className="text-lg">Don't forget your room name!!!</h2>
       </div>
+    
       <form onSubmit={handleCreateRoom}>
       <section className="py-8 flex justify-center">
         <div className="bg-dragMe w-64 h-64 py-4">
@@ -94,6 +120,11 @@ return (
         </div>
       </section>
       </form>
+      {message && (
+          <div className="py-4">
+            <h2 className="text-lg text-erorrs font-bold">{message}</h2>
+          </div>
+        )}
     </main>
   </>
 );
